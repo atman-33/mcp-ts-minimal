@@ -2,15 +2,19 @@
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import {
+  CallToolRequestSchema,
+  ListToolsRequestSchema,
+} from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
+import zodToJsonSchema from 'zod-to-json-schema';
 
 // Input schema for the echo tool
 const HelloToolInputSchema = z.object({
   message: z.string(),
 });
 
-// Create the server
+// Create the MCP server
 const server = new Server(
   {
     name: 'mcp-minimal',
@@ -57,10 +61,29 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   }
 });
 
+// Handle list tools requests
+server.setRequestHandler(ListToolsRequestSchema, async () => {
+  return {
+    tools: [
+      {
+        name: 'hello',
+        description: 'Responds with a greeting message',
+        inputSchema: { type: 'object', properties: {} },
+      },
+      {
+        name: 'echo',
+        description: 'Echoes the provided message',
+        inputSchema: zodToJsonSchema(HelloToolInputSchema),
+      },
+    ],
+  };
+});
+
 // Start the server
 async function runServer() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
+  // Use stderr to avoid being treated as server response
   console.error('MCP Minimal Server running on stdio');
 }
 
