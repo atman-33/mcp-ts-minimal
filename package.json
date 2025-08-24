@@ -2,6 +2,9 @@
   "name": "mcp-ts-minimal",
   "version": "0.1.0",
   "main": "index.js",
+  "bin": {
+    "mcp-swissknife": "dist/index.js"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "ts-node src/index.ts",
@@ -19,7 +22,13 @@
   },
   "author": "atman-33",
   "license": "MIT",
-  "description": "",
+  "description": "A minimal MCP server example with hello and echo tools",
+  "files": [
+    "dist",
+    "README.md",
+    "package.json",
+    "LICENSE"
+  ],
   "devDependencies": {
     "@biomejs/biome": "2.2.2",
     "@types/node": "^24.3.0",
