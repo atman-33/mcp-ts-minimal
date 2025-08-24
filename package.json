@@ -1,0 +1,14 @@
+{
+  "name": "mcp-ts-minimal",
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "atman-33",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  }
+}
