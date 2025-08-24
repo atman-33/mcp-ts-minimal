@@ -10,7 +10,7 @@ import { z } from 'zod';
 import zodToJsonSchema from 'zod-to-json-schema';
 
 // Input schema for the echo tool
-const HelloToolInputSchema = z.object({
+const EchoToolInputSchema = z.object({
   message: z.string(),
 });
 
@@ -38,7 +38,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       };
 
     case 'echo': {
-      const parsed = HelloToolInputSchema.safeParse(args);
+      const parsed = EchoToolInputSchema.safeParse(args);
       if (!parsed.success) {
         return {
           content: [
@@ -73,7 +73,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       {
         name: 'echo',
         description: 'Echoes the provided message',
-        inputSchema: zodToJsonSchema(HelloToolInputSchema),
+        inputSchema: zodToJsonSchema(EchoToolInputSchema),
       },
     ],
   };
