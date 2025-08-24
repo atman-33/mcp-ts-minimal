@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "main": "index.js",
   "bin": {
-    "mcp-swissknife": "dist/index.js"
+    "mcp-ts-minimal": "dist/index.js"
   },
   "scripts": {
     "build": "tsc",
