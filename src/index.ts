@@ -24,11 +24,11 @@ const server = new Server(
     capabilities: {
       tools: {},
     },
-  },
+  }
 );
 
 // Handle tool calls
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
+server.setRequestHandler(CallToolRequestSchema, (request) => {
   const { name, arguments: args } = request.params;
 
   switch (name) {
@@ -62,22 +62,20 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 
 // Handle list tools requests
-server.setRequestHandler(ListToolsRequestSchema, async () => {
-  return {
-    tools: [
-      {
-        name: 'hello',
-        description: 'Responds with a greeting message',
-        inputSchema: { type: 'object', properties: {} },
-      },
-      {
-        name: 'echo',
-        description: 'Echoes the provided message',
-        inputSchema: zodToJsonSchema(EchoToolInputSchema),
-      },
-    ],
-  };
-});
+server.setRequestHandler(ListToolsRequestSchema, async () => ({
+  tools: [
+    {
+      name: 'hello',
+      description: 'Responds with a greeting message',
+      inputSchema: { type: 'object', properties: {} },
+    },
+    {
+      name: 'echo',
+      description: 'Echoes the provided message',
+      inputSchema: zodToJsonSchema(EchoToolInputSchema),
+    },
+  ],
+}));
 
 // Start the server
 async function runServer() {
