@@ -13,7 +13,8 @@
     "rootDir": "src",
     "moduleResolution": "NodeNext",
     "module": "NodeNext",
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "types": ["node", "vitest/globals"]
   },
   "exclude": ["node_modules"],
   "include": ["./src/**/*.ts"]

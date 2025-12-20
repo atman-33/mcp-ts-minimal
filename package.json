@@ -13,6 +13,7 @@
     "fix": "ultracite fix",
     "typecheck": "tsc --noEmit",
     "quality": "npm run typecheck && npm run check",
+    "test": "vitest --run",
     "prepare": "husky"
   },
   "author": "atman-33",
@@ -30,7 +31,8 @@
     "husky": "^9.1.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2",
-    "ultracite": "^6.4.2"
+    "ultracite": "^6.4.2",
+    "vitest": "^4.0.16"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.4",

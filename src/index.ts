@@ -7,7 +7,7 @@ import {
   ListToolsRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
-import zodToJsonSchema from 'zod-to-json-schema';
+import { zodToJsonSchema } from 'zod-to-json-schema';
 
 // Input schema for the echo tool
 const EchoToolInputSchema = z.object({
@@ -15,7 +15,7 @@ const EchoToolInputSchema = z.object({
 });
 
 // Create the MCP server
-const server = new Server(
+export const server = new Server(
   {
     name: 'mcp-minimal',
     version: '0.1.0',
@@ -86,7 +86,10 @@ async function runServer() {
 }
 
 // Run the server and handle fatal errors
-runServer().catch((error) => {
-  console.error('Fatal error running server:', error);
-  process.exit(1);
-});
+// Only run if this file is the main module
+if (require.main === module) {
+  runServer().catch((error) => {
+    console.error('Fatal error running server:', error);
+    process.exit(1);
+  });
+}

@@ -26,3 +26,5 @@ jobs:
         run: npm run build
       - name: Run quality checks
         run: npm run quality
+      - name: Run tests
+        run: npm run test
